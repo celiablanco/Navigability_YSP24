@@ -59,11 +59,11 @@ def generate_fitness_heatmap(sequence_matrix, fitness_matrix, sequences, save_pa
     plt.figure(figsize=(12, 8))
     sns.heatmap(ordered_fitness_matrix, annot=False, fmt=".4f", cmap="viridis", cbar_kws={'label': 'Fitness'})
     plt.title("NK Fitness Landscape Heatmap with Clustering")
-    plt.xlabel("Sequence Numbre")
+    plt.xlabel("Sequence Number")
     plt.ylabel("Fitness Value")
     
-    # Replace sequence indices with actual sequences as labels
-    plt.yticks(ticks=range(len(ordered_indices)), labels=[sequences[idx] for idx in ordered_indices])
+    # Replace sequence indices with sequence numbers
+    plt.yticks(ticks=range(len(ordered_indices)), labels=[str(idx + 1) for idx in ordered_indices])
     
     # Save the heatmap
     if save_path:
@@ -134,5 +134,6 @@ def generate_peak_frequencies(landscapes, alphabet, save_path=None):
     # Save the frequency plot if a path is provided
     if save_path:
         plt.savefig(save_path)
+    plt.close()
 
     return all_peaks, all_peak_clusters
